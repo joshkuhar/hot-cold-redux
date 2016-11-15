@@ -1,51 +1,23 @@
-// guess number
-// submit guess
-// check guess
-// generate random number
-// display guess
-// keep track of guess
-// determine if hot or cold
-
 var GUESS_NUMBER = 'GUESS_NUMBER';
-var guessNumber = function(guess) {
+var guessNumber = function(guessNumber) {
 	return {
 		type: GUESS_NUMBER,
-		guess: guess
+		guess: guessNumber
 	};
 };
 var SUBMIT_GUESS = 'SUBMIT_GUESS';
-var submitGuess = function(submit) {
+var submitGuess = function(guess) {
 	return {
 		type: SUBMIT_GUESS,
-		submit: submit
+		guess: guess,
+		correct: null
 	}
 }
-var CHECK_GUESS = 'CHECK_GUESS';
-var checkGuess = function(check) {
-	return {
-		type: CHECK_GUESS,
-		check: check
-	};
-};
-var GENERATE_NUMBER = 'GENERATE_NUMBER';
-var generateNumber = function(generate) {
-	return {
-		type: GENERATE_NUMBER,
-		generate: generate		
-	}
-}
-var DISPLAY_GUESS = 'DISPLAY_GUESS';
+var DISPLAY_GUESSES = 'DISPLAY_GUESS';
 var displayGuess = function(display) {
 	return {
-		type: DISPLAY_GUESS,
+		type: DISPLAY_GUESSES,
 		display: display
-	}
-}
-var TRACK_GUESS = 'TRACK_GUESS';
-var trackGuess = function(track) {
-	return {
-		type: TRACK_GUESS,
-		track: track		
 	}
 }
 var REPORT_TEMP = 'REPORT_TEMP';
