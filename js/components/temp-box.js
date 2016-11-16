@@ -4,17 +4,21 @@ var actions = require('../actions/dex');
 
 var Temp = React.createClass({
 	reportTemp: function(){
-		this.props.dispatch(actions.reportTemp('Wu Tang Clan'));
+		var guess = this.refs.inputBox.value;
+		this.props.dispatch(actions.reportTemp(guess));
 	},
 	render: function() {
 		console.log(this.props);
 		return (
-			<div><button type="button" onClick={this.reportTemp}>Click Me</button>
-			{this.props.foo.wu}
+			<div>
+				<input type="text" ref="inputBox"/>
+					<button type="button" onClick={this.reportTemp}>
+						Click Me
+					</button><br/>
+				{this.props.foo.wu}
 			</div>
 			);
 	}
-
 });	
 
 var mapStateToProps = function(state, props) {
