@@ -1,47 +1,18 @@
-var actions = require('../actions/index');
+require('babel-polyfill');
 
-var initialState = [];
+var React = require('react');
+var ReactDOM = require('react-dom');
+var Provider = require('react-redux').Provider;
 
-var reducer = function(state, action) {
-    state = state || initialState;
-    if(actions.type === GUESS_NUMBER) {
-    	return state.concat({
-    		guess: action.guess
-    	});
-    }
-    if(action.type === SUBMIT_GUESS) {
-    	if(actions.guess == state.answer) {
-    		return state.concact ({
-    			guess: actions.guess,
-    			correct: true
-    		});
-    	}
-    	else if (actions.guess != state.answer) {
-    		return state.concact ({
-    			guess: actions.guess,
-    			correct: false
-    		});
-    	}
-    }
-    if(actions.type === DISPLAY_GUESSES) {
-    	return state.concact ({
-    		display: actions.display
-    	});
-    }
-    return state;
-};
+var store = require('./store');
+var Game = require('./components/game');
 
-// Initial state should be 
+document.addEventListener('DOMContentLoaded', function() {
+    ReactDOM.render(         
+    	<Provider store={store}>
+            <Game />
+        </Provider>, 
 
-// REDUCER TEMPLATE
-// var initialState = [];
-// var nameOfReducer = function(state, action) {
-//     state = state || initialState;
-//     return state;
-// };
-
-
-
-
-
-exports.reducer = reducer;
+    	document.getElementById('app')
+    );
+});

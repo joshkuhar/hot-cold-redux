@@ -27,3 +27,6 @@ var reportTemp = function(temp) {
 		temp: temp
 	}
 }
+
+exports.GUESS_NUMBER = GUESS_NUMBER;
+exports.guessNumber = guessNumber;
