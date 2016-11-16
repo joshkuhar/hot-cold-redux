@@ -5,11 +5,7 @@ var initialState = {};
 var reducer = function(state, action) {
     state = state || initialState;
     if(action.type === actions.REPORT_TEMP) {
-        if(action.temp == true) {
-            return { temp: "Super Hot"}
-        } else {
-            return { temp: "Cold" }
-        }
+        return {wu: action.tang}
     }
     return state;
 };

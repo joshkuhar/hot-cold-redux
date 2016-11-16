@@ -1,26 +1,28 @@
 var React = require('react');
-var data = require('../data');
+var connect = require('react-redux').connect;
+var actions = require('../actions/dex');
 
 var Temp = React.createClass({
 	reportTemp: function(){
-		var temperature = "Hot"
-	}
+		this.props.dispatch(actions.reportTemp('Wu Tang Clan'));
+	},
 	render: function() {
+		console.log(this.props);
 		return (
-			<div>
-			{this.reportTemp}
+			<div><button type="button" onClick={this.reportTemp}>Click Me</button>
+			{this.props.foo.wu}
 			</div>
 			);
 	}
 
-});
+});	
 
 var mapStateToProps = function(state, props) {
     return {
-        repositories: state
+        foo: state
     };
 };
 
-var Container = connect(mapStateToProps)(RepositoryList);
+var Container = connect(mapStateToProps)(Temp);
 
-module.exports = Temp;	
+module.exports = Container;	
