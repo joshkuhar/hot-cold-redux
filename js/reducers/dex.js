@@ -5,7 +5,7 @@ var initialState = {};
 var reducer = function(state, action) {
     state = state || initialState;
     if(action.type === actions.REPORT_TEMP) {
-        return {wu: action.tang}
+        return {wu: action.guess}
     }
     return state;
 };
