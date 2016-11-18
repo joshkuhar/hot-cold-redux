@@ -10,11 +10,11 @@ var reportTemp = function(temp) {
 exports.REPORT_TEMP = REPORT_TEMP;
 exports.reportTemp = reportTemp;
 
-var FETCH_SUCCESS = 'FETCH_SUCCESS';
-var fetchSuccess = function(answer) {
+var POST_SUCCESS = 'POST_SUCCESS';
+var postSuccess = function(reply) {
     return {
-        type: FETCH_SUCCESS,
-        answer: answer
+        type: POST_SUCCESS,
+        reply: reply
     };
 };
 
@@ -28,8 +28,8 @@ var fetchError = function(repository, error) {
     };
 };
 
-exports.FETCH_SUCCESS = FETCH_SUCCESS;
-exports.fetchSuccess = fetchSuccess;
+exports.POST_SUCCESS = POST_SUCCESS;
+exports.postSuccess = postSuccess;
 exports.FETCH_ERROR = FETCH_ERROR;
 exports.fetchError = fetchError;
 /*
@@ -39,7 +39,7 @@ data model
 {"reply": "Not the lowest"}
 */
 
-var fetchAnswer = function() {
+var fetchScores = function() {
     return function(dispatch) {
         var url = 'http://localhost:8080/fewest-guesses';
         return fetch(url)  
@@ -57,22 +57,23 @@ var fetchAnswer = function() {
         });
     }
 };
-exports.fetchAnswer = fetchAnswer;
+exports.fetchScores = fetchScores;
 
-var postAnswer = function() {
+var postScore = function(guess) {
     return function(dispatch) {
-        var guess = {guess: "21"};
         var url = 'http://localhost:8080/fewest-guesses';
         return fetch(url, {
         method: "POST",
-        body: JSON.stringify(guess),
+        body: JSON.stringify({guess : guess}),
         headers: {
             "Content-Type": "application/json"
         }
     }).then(function(res) {
         return res.json()
     }).then(function(data) {
-        console.log(data)
+        return dispatch(
+            postSuccess(data.reply)
+            )
     }).catch(function(error) {
         return dispatch(
             fetchError(error)
@@ -80,7 +81,7 @@ var postAnswer = function() {
         });
     }
 };
-exports.postAnswer = postAnswer;
+exports.postScore = postScore;
 
 
 
