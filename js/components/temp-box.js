@@ -3,27 +3,34 @@ var connect = require('react-redux').connect;
 var actions = require('../actions/dex');
 
 var Temp = React.createClass({
-	reportTemp: function(){
-		var guess = this.refs.inputBox.value;
-		this.props.dispatch(actions.reportTemp(guess));
+	// reportTemp: function(){
+	// 	var guess = this.refs.inputBox.value;
+	// 	this.props.dispatch(actions.reportTemp(guess));
+
+	// },
+	getWord: function() {
+		this.props.dispatch(actions.postAnswer());
 	},
 	render: function() {
 		console.log(this.props);
 		return (
 			<div>
 				<input type="text" ref="inputBox"/>
-					<button type="button" onClick={this.reportTemp}>
-						Click Me
-					</button><br/>
-				{this.props.foo.wu}
+					<button type="button" onClick={this.getWord}>
+						Hit Me
+					</button>
+				<br/>
+				{this.props.tang}
+				<br/>
+
 			</div>
-			);
+			);	
 	}
 });	
 
 var mapStateToProps = function(state, props) {
     return {
-        foo: state
+        tang: state.tang,
     };
 };
 

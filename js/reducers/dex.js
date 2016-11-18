@@ -5,22 +5,18 @@ var initialState = {};
 var reducer = function(state, action) {
     state = state || initialState;
     if(action.type === actions.REPORT_TEMP) {
-        return {wu: action.guess}
+        return {tang: action.guess};
     }
+    else if (action.type === actions.FETCH_SUCCESS) {
+        // Find the index of the matching repository
+        return {answer: action.answer};
+    }
+    else if (action.type === actions.FETCH_ERROR) {
+        // Find the index of the matching repository
+        throw new Error('No answer, something went wrong');
+    }
+
     return state;
 };
-
-// Initial state should be 
-
-// REDUCER TEMPLATE
-// var initialState = [];
-// var nameOfReducer = function(state, action) {
-//     state = state || initialState;
-//     return state;
-// };
-
-
-
-
 
 exports.reducer = reducer;
