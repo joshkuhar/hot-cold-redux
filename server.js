@@ -28,6 +28,7 @@ app.get('/fewest-guesses', function(req, res) {
     res.json({guesses: guesses});
 });
 app.post('/fewest-guesses', function(req, res) {
+	console.log('I was hit');
 	var guess = parseInt(req.body.guess, 10);
     res.json(addGuess(guess));
 });
